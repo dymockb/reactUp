@@ -12,6 +12,7 @@ const Home: React.FC = () => {
   const [input, setInput] = useState<string>('')
 
   useEffect(() => {
+    // eslint-disable-next-line
     console.log(input)
   }, [input])
 
@@ -42,6 +43,7 @@ const Home: React.FC = () => {
         </IonButton>
         <IonInput 
           value={input}
+          // eslint-disable-next-line
           onIonChange={(e: any) => setInput(e.target.value)}
           ></IonInput>
       </IonContent>
