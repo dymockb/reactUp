@@ -37,7 +37,7 @@ const Home: React.FC = () => {
             </IonItem>
           ))}
         </IonList>
-        <IonButton color="primary">
+        <IonButton color="primary" routerLink="/example">
           <IonIcon slot="start" icon={star}></IonIcon>
           Button
         </IonButton>
