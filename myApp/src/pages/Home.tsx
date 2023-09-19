@@ -1,11 +1,20 @@
 import React from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonList, IonItem, IonText, IonButton, IonIcon } from '@ionic/react';
+import {useState, useEffect} from 'react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonList, IonItem, IonText, IonButton, IonIcon, IonInput } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
 import './Home.css';
 
 import {star} from 'ionicons/icons'
 
+
 const Home: React.FC = () => {
+
+  const [input, setInput] = useState<string>('')
+
+  useEffect(() => {
+    console.log(input)
+  }, [input])
+
   return (
     <IonPage>
       <IonHeader >
@@ -28,9 +37,13 @@ const Home: React.FC = () => {
           ))}
         </IonList>
         <IonButton color="primary">
-          <IonIcon icon={star}></IonIcon>
+          <IonIcon slot="start" icon={star}></IonIcon>
           Button
-          </IonButton>
+        </IonButton>
+        <IonInput 
+          value={input}
+          onIonChange={(e: any) => setInput(e.target.value)}
+          ></IonInput>
       </IonContent>
 
     </IonPage>
