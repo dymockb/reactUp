@@ -3,15 +3,23 @@ import { useState } from 'react';
 import { IonButton, IonContent, IonHeader, IonInput, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import './Home.css';
 import { Link } from 'react-router-dom'
+import { loginUser } from '../firebaseConfig'
+//import { toast } from '../toast'
 
 const Login: React.FC = () => {
 
   const [username, setUsername] = useState<string>('')
   const [password, setPassword] = useState<string>('')
 
-  function loginUser() {
-    // eslint-disable-next-line
-    console.log(username, password)
+  async function login() {
+    const res = await loginUser(username, password)
+    
+    if (!res) {
+      //toast('error logging in')
+    } else {
+      //toast('logged in')
+    }
+  
   }
 
   return (
@@ -31,7 +39,7 @@ const Login: React.FC = () => {
           placeholder='password'
           onIonChange={(e: any) => { setPassword(e.target.value)}}
         ></IonInput>
-        <IonButton onClick={loginUser}>Login</IonButton>
+        <IonButton onClick={login}>Login</IonButton>
         <p>New here?<Link to="/register" className="ion-padding">Register</Link></p>
         <p><Link to="/">Back Home</Link></p>
       </IonContent>
