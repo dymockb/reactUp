@@ -16,7 +16,7 @@ const auth = getAuth(app);
 
 export async function loginUser(username: string, password: string) {
     
-    const email = `${username}@something.com`
+    const email = `${username}@arealemail.com`
 
     try {
         const res = await signInWithEmailAndPassword(auth, email, password)

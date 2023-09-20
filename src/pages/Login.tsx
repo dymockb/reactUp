@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { IonButton, IonContent, IonHeader, IonInput, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonButton, IonContent, IonHeader, IonInput, IonPage, IonTitle, IonToolbar, useIonToast } from '@ionic/react';
 import './Home.css';
 import { Link } from 'react-router-dom'
 import { loginUser } from '../firebaseConfig'
@@ -10,14 +10,21 @@ const Login: React.FC = () => {
   const [username, setUsername] = useState<string>('')
   const [password, setPassword] = useState<string>('')
 
+  const [present] = useIonToast();
+
+  const presentToast = (message: string, duration = 2000) => {
+   present({
+      message, duration
+    });
+  }
 
   async function login() {
     const res = await loginUser(username, password)
     
     if (!res) {
-      console.log('error logging in')
+      presentToast('error logging in')
     } else {
-      console.log('ok')
+      presentToast('ok')
     }
   
   }
