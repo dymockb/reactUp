@@ -37,9 +37,13 @@ const Home: React.FC = () => {
             </IonItem>
           ))}
         </IonList>
-        <IonButton color="primary" routerLink="/example">
+        <IonButton color="primary" routerLink="/login">
           <IonIcon slot="start" icon={star}></IonIcon>
-          Button
+          Login
+        </IonButton>
+        <IonButton color="primary" routerLink="/register">
+          <IonIcon slot="start" icon={star}></IonIcon>
+          Register
         </IonButton>
         <IonInput 
           value={input}
