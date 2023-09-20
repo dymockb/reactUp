@@ -6,7 +6,7 @@ import './Home.css';
 
 import {star} from 'ionicons/icons'
 
-
+//
 const Home: React.FC = () => {
 
   const [input, setInput] = useState<string>('')

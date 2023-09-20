@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { IonButton, IonContent, IonHeader, IonInput, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import './Home.css';
+import { Link } from 'react-router-dom'
 
 const Login: React.FC = () => {
 
@@ -17,19 +18,22 @@ const Login: React.FC = () => {
     <IonPage>
       <IonHeader >
         <IonToolbar>
-          <IonTitle>Blank</IonTitle>
+          <IonTitle>Login</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen>
+      <IonContent fullscreen className="ion-padding">
         <IonInput 
           placeholder='username'
           onIonChange={(e: any) => { setUsername(e.target.value)}}
           ></IonInput>
         <IonInput 
+          type="password"
           placeholder='password'
           onIonChange={(e: any) => { setPassword(e.target.value)}}
         ></IonInput>
         <IonButton onClick={loginUser}>Login</IonButton>
+        <p>New here?<Link to="/register" className="ion-padding">Register</Link></p>
+        <p><Link to="/">Back Home</Link></p>
       </IonContent>
 
     </IonPage>
