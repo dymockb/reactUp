@@ -41,7 +41,7 @@ const Home: React.FC = () => {
           <IonIcon slot="start" icon={star}></IonIcon>
           Login
         </IonButton>
-        <IonButton color="primary" routerLink="/register">
+        <IonButton color="secondary" routerLink="/register">
           <IonIcon slot="start" icon={star}></IonIcon>
           Register
         </IonButton>
