@@ -4,20 +4,20 @@ import { IonButton, IonContent, IonHeader, IonInput, IonPage, IonTitle, IonToolb
 import './Home.css';
 import { Link } from 'react-router-dom'
 import { loginUser } from '../firebaseConfig'
-//import { toast } from '../toast'
 
 const Login: React.FC = () => {
 
   const [username, setUsername] = useState<string>('')
   const [password, setPassword] = useState<string>('')
 
+
   async function login() {
     const res = await loginUser(username, password)
     
     if (!res) {
-      //toast('error logging in')
+      console.log('error logging in')
     } else {
-      //toast('logged in')
+      console.log('ok')
     }
   
   }

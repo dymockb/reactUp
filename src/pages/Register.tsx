@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { IonButton, IonContent, IonHeader, IonInput, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import './Home.css';
 import { Link } from 'react-router-dom'
+import { registerUser} from '../firebaseConfig'
 
 const Register: React.FC = () => {
 
@@ -10,9 +11,20 @@ const Register: React.FC = () => {
   const [password, setPassword] = useState<string>('')
   const [confirmPassword, setConfirmPassword] = useState<string>('')
 
-  function registerUser() {
+  async function register() {
     // eslint-disable-next-line
     console.log(username, password, confirmPassword)
+
+    if (password !== confirmPassword) {
+      console.log('dont match')
+    }
+    const res = await registerUser(username, password)
+
+    if (!res) {
+      console.log('reg err')
+    } else {
+      console.log('reg ok')
+    }
   }
 
   return (
@@ -37,7 +49,7 @@ const Register: React.FC = () => {
           placeholder='confirm password'
           onIonChange={(e: any) => { setConfirmPassword(e.target.value)}}
         ></IonInput>
-        <IonButton onClick={registerUser}>Register</IonButton>
+        <IonButton onClick={register}>Register</IonButton>
         <p>Already have an account? <Link to="/login" className="ion-padding">Login</Link></p>
         <p><Link to="/">Back Home</Link></p>
       </IonContent>

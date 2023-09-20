@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword  } from "firebase/auth";
 
 const config = {
     apiKey: "AIzaSyCmHGNXgpN0ULzo4qEqt_PvpbLIlQKfzFU",
@@ -29,6 +29,18 @@ export async function loginUser(username: string, password: string) {
     
 }
 
+export async function registerUser(username: string, password: string) {
+
+    const email = `${username}@arealemail.com`
+
+    try {
+        const res = await createUserWithEmailAndPassword(auth, email, password)
+        console.log(res)
+        return true
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 
 /*

@@ -1,13 +1,10 @@
-// import { toastController } from '@ionic/core'
-// (window as any).toastController = toastController;
+import React from 'react';
+import { useIonToast } from '@ionic/react';
 
-// export async function toast(this: any, message: string, duration = 2000) {
-//     const toast = await this.toastController.create({
-//       message: message,
-//       duration: duration,
-//     });
-
-//     await toast.present();
-//   }
-
-export const thing = 1
+export function toast(message: string, duration = 2000) {
+    const [present] = useIonToast();
+    present({
+        message: message,
+        duration: duration
+    });
+}
