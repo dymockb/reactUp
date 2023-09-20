@@ -48,7 +48,7 @@ const Home: React.FC = () => {
         <IonInput 
           value={input}
           // eslint-disable-next-line
-          onIonChange={(e: any) => setInput(e.target.value)}
+          onIonInput={(e: any) => setInput(e.target.value)}
           ></IonInput>
       </IonContent>
 
