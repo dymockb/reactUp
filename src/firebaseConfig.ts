@@ -3,12 +3,12 @@ import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword  } 
 
 const config = {
     apiKey: process.env.REACT_APP_FB_API_KEY,
-    authDomain: "myapp-fed88.firebaseapp.com",
-    projectId: "myapp-fed88",
-    storageBucket: "myapp-fed88.appspot.com",
-    messagingSenderId: "214178784104",
-    appId: "1:214178784104:web:5523b9413a77aa99b82cdd",
-    measurementId: "G-FZ0EYVFSB2"
+    authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_APP_ID,
+    measurementId: process.env.REACT_APP_MEASUREMENT_ID
 }
 
 const app = initializeApp(config)
