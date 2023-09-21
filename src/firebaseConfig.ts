@@ -20,10 +20,8 @@ export async function loginUser(username: string, password: string) {
 
     try {
         const res = await signInWithEmailAndPassword(auth, email, password)
-        console.log(res)
         return true
     } catch (error) {
-        console.log(error)
         return false
     }
     
@@ -35,10 +33,8 @@ export async function registerUser(username: string, password: string) {
 
     try {
         const res = await createUserWithEmailAndPassword(auth, email, password)
-        console.log(res)
         return true
     } catch (error) {
-        console.log(error)
     }
 }
 
