@@ -12,7 +12,7 @@ const Register: React.FC = () => {
   const [confirmPassword, setConfirmPassword] = useState<string>('')
 
   async function register() {
-    // eslint-disable-next-line
+    
     console.log(username, password, confirmPassword)
 
     if (password !== confirmPassword) {
