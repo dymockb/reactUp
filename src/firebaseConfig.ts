@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword  } from "firebase/auth";
 
 const config = {
-    apiKey: process.env.FB_API_KEY,
+    apiKey: process.env.REACT_APP_FB_API_KEY,
     authDomain: "myapp-fed88.firebaseapp.com",
     projectId: "myapp-fed88",
     storageBucket: "myapp-fed88.appspot.com",
