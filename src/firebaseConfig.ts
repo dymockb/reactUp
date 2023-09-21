@@ -35,6 +35,8 @@ export async function registerUser(username: string, password: string) {
         const res = await createUserWithEmailAndPassword(auth, email, password)
         return true
     } catch (error) {
+        console.log(error)
+        return false
     }
 }
 
