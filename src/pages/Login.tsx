@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { IonButton, IonContent, IonHeader, IonInput, IonPage, IonTitle, IonToolbar, useIonToast } from '@ionic/react';
+import { IonButton, IonContent, IonHeader, IonInput, IonLoading, IonPage, IonTitle, IonToolbar, useIonToast } from '@ionic/react';
 import './Home.css';
 import { Link } from 'react-router-dom'
 import { loginUser } from '../firebaseConfig'
@@ -9,6 +9,8 @@ const Login: React.FC = () => {
 
   const [username, setUsername] = useState<string>('')
   const [password, setPassword] = useState<string>('')
+
+  const [busy, setBusy] = useState<boolean>(false)
 
   const [present] = useIonToast();
 
@@ -19,14 +21,15 @@ const Login: React.FC = () => {
   }
 
   async function login() {
+    setBusy(true)
     const res = await loginUser(username, password)
     
-    if (!res) {
-      presentToast('error logging in')
+    if (res == true) {
+      presentToast('You have logged in')
     } else {
-      presentToast('ok')
+      presentToast(res)
     }
-  
+    setBusy(false)
   }
 
   return (
@@ -36,6 +39,7 @@ const Login: React.FC = () => {
           <IonTitle>Login</IonTitle>
         </IonToolbar>
       </IonHeader>
+      {<IonLoading message="Please wait" duration={0} isOpen={busy}/>}
       <IonContent fullscreen className="ion-padding">
         <IonInput 
           placeholder='username'

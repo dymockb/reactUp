@@ -21,8 +21,9 @@ export async function loginUser(username: string, password: string) {
     try {
         const res = await signInWithEmailAndPassword(auth, email, password)
         return true
-    } catch (error) {
-        return false
+    } catch (error: any) {
+        console.log(error)
+        return error.message
     }
     
 }
@@ -32,11 +33,11 @@ export async function registerUser(username: string, password: string) {
     const email = `${username}@arealemail.com`
 
     try {
-        const res = await createUserWithEmailAndPassword(auth, email, password)
+        await createUserWithEmailAndPassword(auth, email, password)
         return true
-    } catch (error) {
+    } catch (error: any) {
         console.log(error)
-        return false
+        return error.message
     }
 }
 
