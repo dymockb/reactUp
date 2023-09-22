@@ -6,6 +6,9 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import { getCurrentUser } from './firebaseConfig'
+import Dashboard from './pages/Dashboard';
+import { useDispatch } from 'react-redux';
+import { setUserState } from './redux/actions';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -26,9 +29,10 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
-import Dashboard from './pages/Dashboard';
 
 setupIonicReact();
+
+//https://react.dev/reference/react/useContext#updating-data-passed-via-context
 
 const RoutingSystem: React.FC = () => {
   return (
@@ -54,14 +58,19 @@ const RoutingSystem: React.FC = () => {
 }
 
 const App: React.FC = () => {
+
   const [busy, setBusy] = useState(true)
+  const dispatch = useDispatch()
+
   useEffect(() => {
-    getCurrentUser().then(user => {
+    getCurrentUser().then((user: any) => {
       if(user){
         //logged in
+        console.log(user)
+        dispatch(setUserState(user.email))
         window.history.replaceState({}, '', '/dashboard')
       } else {
-        window.history.replaceState({}, '', '/')
+          window.history.replaceState({}, '', '/login')
       }
       setBusy(false)
     })
@@ -69,11 +78,10 @@ const App: React.FC = () => {
   }, [])
 
   return (
-  <IonApp>
-    
-    {busy ? <IonSpinner /> : <RoutingSystem></RoutingSystem>}
-    
-  </IonApp>
+
+      <IonApp>
+          {busy ? <IonSpinner /> : <RoutingSystem></RoutingSystem>}
+      </IonApp>
   )
 
 }

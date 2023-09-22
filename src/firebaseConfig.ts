@@ -46,7 +46,6 @@ export function getCurrentUser(){
         const unsubscribe = auth.onAuthStateChanged(function(user){
             console.log('user', user)
             if(user){
-                
                 resolve(user)
             } else {
                 resolve(null)

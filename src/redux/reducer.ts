@@ -1,5 +1,9 @@
+const defaultState = {
+    user: {}
+}
+
 export default function reducer(
-    state = {},
+    state = defaultState,
     {type, payload }: {type: string, payload: any}
 ): any 
 {
@@ -7,7 +11,9 @@ export default function reducer(
         case 'SET_USER_STATE':
             return {
                 ...state,
-                userData: payload
+                user: {
+                    email: payload
+                }
             }
     }
 

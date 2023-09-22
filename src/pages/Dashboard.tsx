@@ -2,9 +2,12 @@ import React from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonList, IonItem, IonText, IonButton, IonIcon, IonInput } from '@ionic/react';
 //import ExploreContainer from '../components/ExploreContainer';
 import './Home.css';
+import { useSelector } from 'react-redux';
+ 
 
-//
 const Dashboard: React.FC = () => {
+
+  const username = useSelector((state: any) => state.user.email )
 
   return (
     <IonPage>
@@ -14,7 +17,7 @@ const Dashboard: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <p>Hello</p>
+        <p>Hello {username}</p>
       </IonContent>
 
     </IonPage>
