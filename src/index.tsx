@@ -4,8 +4,12 @@ import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux'
-import { store } from './store'
+import { configureStore } from '@reduxjs/toolkit';
+import reducer from './redux/reducer'
 
+const store = configureStore({
+  reducer: reducer
+})
 
 const container = document.getElementById('root');
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion

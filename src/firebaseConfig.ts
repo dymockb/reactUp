@@ -41,6 +41,20 @@ export async function registerUser(username: string, password: string) {
     }
 }
 
+export function getCurrentUser(){
+    return new Promise((resolve, reject) => {
+        const unsubscribe = auth.onAuthStateChanged(function(user){
+            console.log('user', user)
+            if(user){
+                
+                resolve(user)
+            } else {
+                resolve(null)
+            }
+            unsubscribe()
+        })
+    })
+}
 
 /*
 import firebase from 'firebase/compat/app';
