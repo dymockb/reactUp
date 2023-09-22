@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Route } from 'react-router-dom'; //Redirect,
+import { Route, Redirect } from 'react-router-dom'; //Redirect,
 import { IonApp, IonRouterOutlet, IonSpinner, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import Home from './pages/Home';
@@ -7,7 +7,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import { getCurrentUser } from './firebaseConfig'
 import Dashboard from './pages/Dashboard';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setUserState } from './redux/actions';
 
 /* Core CSS required for Ionic components to work properly */
@@ -35,22 +35,27 @@ setupIonicReact();
 //https://react.dev/reference/react/useContext#updating-data-passed-via-context
 
 const RoutingSystem: React.FC = () => {
+
+  const isAuth = useSelector((state: any) => state.user.auth )
+  console.log('isAuth', isAuth)
+  //const go = username != null ? true : false;
+  //console.log(go)
   return (
     
       <IonReactRouter>
         <IonRouterOutlet>
-          {/*
-          <Route exact path="/home">
-            <Home />
-          </Route>
-          <Route exact path="/">
-            <Redirect to="/home" />
-          </Route>
-          */}
-          <Route path="/" component={Home} exact />
+          <Route path="/" exact 
+            render={()=>{
+              return isAuth ? <Redirect to='/dashboard' /> : <Home />
+            }}          
+          />
           <Route path="/login" component={Login} exact />
           <Route path="/register" component={Register} exact />
-          <Route path="/dashboard" component={Dashboard} exact />
+          <Route path="/dashboard" exact 
+            render={()=>{
+              return isAuth ? <Dashboard /> : <Redirect to='/' />
+            }}
+          />
         </IonRouterOutlet>
       </IonReactRouter>
     
@@ -59,33 +64,33 @@ const RoutingSystem: React.FC = () => {
 
 const App: React.FC = () => {
 
-  const [busy, setBusy] = useState(true)
+  //const [busy, setBusy] = useState(true)
   const dispatch = useDispatch()
 
   useEffect(() => {
+
     getCurrentUser().then((user: any) => {
       if(user){
-        //logged in
-        console.log(user)
-        dispatch(setUserState(user.email))
-        window.history.replaceState({}, '', '/dashboard')
+        console.log('current user:', user.email)
+        dispatch(setUserState({email: user.email, auth: true}))
+        //window.history.replaceState({}, '', '/dashboard')
       } else {
-          window.history.replaceState({}, '', '/login')
+        console.log('no current user')
+        //window.history.replaceState({}, '', '/login')
       }
-      setBusy(false)
     })
 
   }, [])
+  
 
   return (
-
-      <IonApp>
-          {busy ? <IonSpinner /> : <RoutingSystem></RoutingSystem>}
-      </IonApp>
+    <IonApp>
+      <RoutingSystem></RoutingSystem>
+    </IonApp>
   )
 
 }
 
-
+//{busy ? <IonSpinner /> : <RoutingSystem></RoutingSystem>}
 
 export default App;

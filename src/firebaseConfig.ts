@@ -43,16 +43,17 @@ export async function registerUser(username: string, password: string) {
 
 export function getCurrentUser(){
     return new Promise((resolve, reject) => {
-        const unsubscribe = auth.onAuthStateChanged(function(user){
-            console.log('user', user)
+        auth.onAuthStateChanged(function(user){
             if(user){
+                console.log(1)
                 resolve(user)
             } else {
+                console.log(2)
                 resolve(null)
             }
-            unsubscribe()
         })
     })
+		
 }
 
 /*
