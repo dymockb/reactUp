@@ -4,6 +4,11 @@ import { IonButton, IonContent, IonHeader, IonInput, IonLoading, IonPage, IonTit
 import './Home.css';
 import { Link, useHistory } from 'react-router-dom'
 import { loginUser } from '../firebaseConfig'
+import { useDispatch, useSelector } from 'react-redux';
+import { getCurrentUser } from '../firebaseConfig'
+import { setUserState } from '../redux/actions';
+
+
 
 const Login: React.FC = () => {
 
@@ -15,6 +20,7 @@ const Login: React.FC = () => {
   const [busy, setBusy] = useState<boolean>(false)
 
   const [present] = useIonToast();
+  const dispatch = useDispatch()
 
   const presentToast = (message: string, duration = 2000) => {
    present({
@@ -23,16 +29,18 @@ const Login: React.FC = () => {
   }
 
   async function login() {
-    //setBusy(true)
+    setBusy(true)
     const res = await loginUser(username, password)
-    
-    // if (res == true) {
-    //   presentToast('You have logged in')
-    //   //history.push('/')
-    // } else {
-    //   presentToast(res)
-    // }
-    //setBusy(false)
+    console.log('res',res)
+    if (res.user) {
+      presentToast('You have logged in')
+      dispatch(setUserState({email: res.user.email, auth: true}))
+      history.push('/dashboard')
+
+    } else {
+      presentToast(res)
+    }
+    setBusy(false)
   }
 
   return (

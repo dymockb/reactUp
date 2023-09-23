@@ -20,7 +20,7 @@ export async function loginUser(username: string, password: string) {
 
     try {
         const res = await signInWithEmailAndPassword(auth, email, password)
-        return true
+        return res
     } catch (error: any) {
         console.log(error)
         return error.message
@@ -45,7 +45,7 @@ export function getCurrentUser(){
     return new Promise((resolve, reject) => {
         auth.onAuthStateChanged(function(user){
             if(user){
-                console.log(1)
+                console.log(1, user)
                 resolve(user)
             } else {
                 console.log(2)

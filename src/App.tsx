@@ -64,7 +64,7 @@ const RoutingSystem: React.FC = () => {
 
 const App: React.FC = () => {
 
-  //const [busy, setBusy] = useState(true)
+  const [busy, setBusy] = useState(true)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -79,18 +79,18 @@ const App: React.FC = () => {
         //window.history.replaceState({}, '', '/login')
       }
     })
-
+    setBusy(false)
   }, [])
   
 
   return (
     <IonApp>
-      <RoutingSystem></RoutingSystem>
+      {busy ? <IonSpinner duration={2000}/> : <RoutingSystem></RoutingSystem>}
     </IonApp>
   )
 
 }
 
-//{busy ? <IonSpinner /> : <RoutingSystem></RoutingSystem>}
+
 
 export default App;
