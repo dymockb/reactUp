@@ -44,18 +44,29 @@ const RoutingSystem: React.FC = () => {
     
       <IonReactRouter>
         <IonRouterOutlet>
-          <Route path="/" exact 
+          {isAuth && <Redirect from="/" to="/dashboard" />}
+          <Route path="/*" component={Home} />
+          <Route path="/login" component={Login} exact />
+          <Route path="/register" component={Register} exact />
+          <Route path="/dashboard" exact
+            render={()=>{
+              return isAuth ? <Dashboard /> : <Redirect to='/' />
+            }}      
+          />          
+          {/*
+          <Route path="/"  
             render={()=>{
               return isAuth ? <Redirect to='/dashboard' /> : <Home />
             }}          
           />
-          <Route path="/login" component={Login} exact />
-          <Route path="/register" component={Register} exact />
+
           <Route path="/dashboard" exact 
             render={()=>{
               return isAuth ? <Dashboard /> : <Redirect to='/' />
             }}
+          
           />
+          */}
         </IonRouterOutlet>
       </IonReactRouter>
     
@@ -73,10 +84,8 @@ const App: React.FC = () => {
       if(user){
         console.log('current user:', user.email)
         dispatch(setUserState({email: user.email, auth: true}))
-        //window.history.replaceState({}, '', '/dashboard')
       } else {
         console.log('no current user')
-        //window.history.replaceState({}, '', '/login')
       }
     })
     setBusy(false)

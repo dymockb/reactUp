@@ -1,11 +1,9 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { IonButton, IonContent, IonHeader, IonInput, IonLoading, IonPage, IonTitle, IonToolbar, useIonToast } from '@ionic/react';
 import './Home.css';
 import { Link, useHistory } from 'react-router-dom'
 import { loginUser } from '../firebaseConfig'
-import { useDispatch, useSelector } from 'react-redux';
-import { getCurrentUser } from '../firebaseConfig'
+import { useDispatch, } from 'react-redux';
 import { setUserState } from '../redux/actions';
 
 
