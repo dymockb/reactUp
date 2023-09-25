@@ -30,7 +30,7 @@ const Dashboard: React.FC = () => {
     if (res == true) {
       presentToast('You have logged out')
       dispatch(setUserState({email: username, auth: false}))
-      history.push('/logout')
+      history.push('/')
     } else {
       presentToast(res)
     }
@@ -47,7 +47,7 @@ const Dashboard: React.FC = () => {
       {<IonLoading message="Please wait" duration={0} isOpen={busy}/>}
       <IonContent fullscreen>
         <p>Hello {username}</p>
-      <IonButton onClick={logout} color="primary" routerLink="/logout">
+      <IonButton onClick={logout} color="primary">
         Logout
       </IonButton>
       </IonContent>

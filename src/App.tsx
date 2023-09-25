@@ -45,7 +45,7 @@ const RoutingSystem: React.FC = () => {
       <IonReactRouter>
         <IonRouterOutlet>
           {isAuth && <Redirect from="/" to="/dashboard" />}
-          <Route path="/*" component={Home} />
+          <Route path="/" component={Home} exact />
           <Route path="/login" component={Login} exact />
           <Route path="/register" component={Register} exact />
           <Route path="/dashboard" exact
