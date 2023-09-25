@@ -1,0 +1,13 @@
+useEffect(() => {
+
+    getCurrentUser().then((user: any) => {
+      if(user){
+        dispatch(setUserState({email: user.email, auth: true}))
+        //window.history.replaceState({}, '', '/dashboard')
+      } else {
+        console.log('nope')
+        //window.history.replaceState({}, '', '/login')
+      }
+    })
+
+  }, [])

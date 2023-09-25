@@ -10,10 +10,10 @@ const Home: React.FC = () => {
 
   const [input, setInput] = useState<string>('')
 
-  useEffect(() => {
-    // eslint-disable-next-line
-    console.log(input)
-  }, [input])
+  // useEffect(() => {
+  //   // eslint-disable-next-line
+  //   console.log(input)
+  // }, [input])
 
   return (
     <IonPage>
