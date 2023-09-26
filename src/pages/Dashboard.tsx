@@ -98,10 +98,8 @@ const Dashboard: React.FC = () => {
         <p className="ion-padding">Hello {username}</p>
         <IonList >
         {activeWordList.map(wordBlock => {
-          
           const isDone = wordBlock.done;
           const isCorrect = wordBlock.correct
-
           if (isCorrect) {
             console.log('correct')
             return <IonItem key={wordBlock.word}>{wordBlock.word}!</IonItem>  
